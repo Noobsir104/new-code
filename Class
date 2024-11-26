@@ -1,0 +1,36 @@
+class Customer:
+    def __init__(self, customer_number, is_member=False):
+        self.customer_number = customer_number
+        self.is_member = is_member
+        self.loyalty_points = 0
+
+    def add_points(self, amount):
+        if self.is_member:
+            points = amount // 100
+            self.loyalty_points += points
+            print(f"{points} loyalty points added to customer {self.customer_number}.")
+        else:
+            print(f"Customer {self.customer_number} is not a member, no loyalty points added.")
+
+    def display_points(self):
+        print(f"Customer {self.customer_number} has {self.loyalty_points} loyalty points.")
+
+
+def process_purchase(customer, amount, payment_method):
+    print(f"Processing purchase for customer {customer.customer_number} of amount ${amount} using {payment_method}.")
+    customer.add_points(amount)
+    customer.display_points()
+
+
+def main():
+    # Test Case 1
+    customer1 = Customer(1111, is_member=True)
+    process_purchase(customer1, 810, "Card")
+
+    # Test Case 2
+    customer2 = Customer(2222, is_member=False)
+    process_purchase(customer2, 350, "Cash")
+
+
+if __name__ == "__main__":
+    main()
